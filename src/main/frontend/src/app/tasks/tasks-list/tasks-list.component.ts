@@ -17,11 +17,14 @@ export class TasksListComponent implements OnInit{
 
     ngOnInit(): void {
       this.getTaskList();
+
     }
 
     getTaskList(){
+
         this.taskService.getTasks().subscribe(res => {
             this.tasks = res;
+
         }, error => console.log(error));
     }
 
@@ -30,6 +33,6 @@ export class TasksListComponent implements OnInit{
     }
 
     getDueDateLabel(task: Task) {
-        return task.isCompleted ? 'bg-success' : 'bg-primary';
+        return task.completed ? 'bg-success' : 'bg-primary';
     }
 }
