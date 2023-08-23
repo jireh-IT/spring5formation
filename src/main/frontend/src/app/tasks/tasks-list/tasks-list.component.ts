@@ -25,11 +25,19 @@ export class TasksListComponent implements OnInit{
         this.taskService.getTasks().subscribe(res => {
             this.tasks = res;
 
-        }, error => console.log(error));
+        }, error => console.log(error)
+        );
+        this.taskService.onTaskAdded.subscribe(res =>{
+            this.tasks.push(res)
+        });
+
     }
 
     onTaskChange(event:any, task: Task) {
-        console.log('on change cjeck')
+        this.taskService.saveTask(task, event.target.checked).
+        subscribe(res =>{
+
+        })
     }
 
     getDueDateLabel(task: Task) {
