@@ -1,7 +1,15 @@
-<ul class="list-group mt-2">
-    <li class="list-group-item">An item</li>
-    <li class="list-group-item">A second item</li>
-    <li class="list-group-item">A third item</li>
-    <li class="list-group-item">A fourth item</li>
-    <li class="list-group-item">And a fifth one</li>
+<ul class="list-group mt-2" >
+
+    <li *ngFor="let task of tasks" class="list-group-item">
+        <div class="task-checkbox">
+            <input type="checkbox"
+                   class="list-child"
+                   (change)="onTaskChange($event, task)"
+                   [checked]="task.isCompleted"
+            />
+            <span  [ngClass]="[task.isCompleted? 'name completed' : 'name']">{{task.name}} </span>
+            <span  class="badge  {{getDueDateLabel(task)}} float-end">{{task.dueDate}}</span>
+        </div>
+    </li>
+
 </ul>
